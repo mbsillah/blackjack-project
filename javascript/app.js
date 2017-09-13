@@ -74,46 +74,51 @@ $(() => {
     }
   
   
-      function deal () {
+    function deal () {
+      isRunning = true;  
       for (let i = 0; i < 2; i++) {
-        playerHand.push(
-          mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]
-        );
-        dealerHand.push(
-          mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]
-        );
+        playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+        dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+        // playerTotal += playerHand[i].value;
+        // dealerTotal += dealerHand[i].value;
       }
-      playerTotal = playerHand[0].value + playerHand[1].value;
-      dealerTotal = dealerHand[0].value + dealerHand[1].value;
-      // console.log("The player's hand is: " + JSON.stringify(playerHand));
-      // console.log("The players total: " + playerTotal);
-      // console.log("The dealer's hand is: " + JSON.stringify(dealerHand));
-      // console.log("The players total: " + dealerTotal);
-      }
-               
-  
+      //console.log("The player's hand is: " + JSON.stringify(playerHand));
+      //console.log("The players total: " + playerTotal);
+      //console.log("The dealer's hand is: " + JSON.stringify(dealerHand));
+      //console.log("The players total: " + dealerTotal);
+    }
+
     deal();
-  
+
     function hit() {
-      if (playerTotal <= 21) {
-        playerHand.push(
-          mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]
-        );
-        playerTotal += playerHand[2].value;
+      if (isRunning === true && playerTotal <= 21) {
+        for (let i = 0; i < 1; i++) {  
+        playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
       }
     }
-  
-    hit();
   
     function stand() {
-      if (playerTotal <= 21) {
-    // end game
-    // dealer gets cards, while its lower 
-
+      if (isRunning === true) {
+        isRunning = false;
+      }
+      while (dealerTotal <= 17) {
+        dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
       }
     }
+    // total value of hand = hand.reduce(function(sum, apple) {
+    // return sum + apple.value 
+    // })
+    function totalScores () {
+        playerTotal = playerHand.reduce(function(sum, value) {
+            return sum + value.value;
+        })
+        dealerTotal = dealerHand.reduce(function (pear, orange) {
+            return pear + orange.value;
+        })
+    
+    }
   
-    function compare(playerTotal, dealerTotal) {
+    function compare() {
       if (playerTotal < dealerTotal) {
         console.log("Dealer Wins");
       } else if (playerTotal === 21 && dealerTotal < 21) {
@@ -124,9 +129,9 @@ $(() => {
             console.log("The dealer BUSTED. You win!");
       }  else if (dealerTotal === 21 && playerTotal < 21) {
             console.log("Dealer hit Blackjack. You lose");
-        }
       }
+    }
 
-
+    }
   });
   
