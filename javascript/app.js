@@ -84,10 +84,10 @@ $(() => {
       }
       playerTotal = playerHand[0].value + playerHand[1].value;
       dealerTotal = dealerHand[0].value + dealerHand[1].value;
-      console.log("The player's hand is: " + JSON.stringify(playerHand));
-      console.log("The players total: " + playerTotal);
-      console.log("The dealer's hand is: " + JSON.stringify(dealerHand));
-      console.log("The players total: " + dealerTotal);
+      // console.log("The player's hand is: " + JSON.stringify(playerHand));
+      // console.log("The players total: " + playerTotal);
+      // console.log("The dealer's hand is: " + JSON.stringify(dealerHand));
+      // console.log("The players total: " + dealerTotal);
       }
                
   
@@ -106,6 +106,9 @@ $(() => {
   
     function stand() {
       if (playerTotal <= 21) {
+    // end game
+    // dealer gets cards, while its lower 
+
       }
     }
   
