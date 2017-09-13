@@ -4,6 +4,7 @@ $(() => {
     const dealerHand = [];
     let playerTotal = 0;
     let dealerTotal = 0;
+    let isRunning = false;
   
     function makeCard(rank, suit) {
       this.rank = rank;
@@ -115,8 +116,17 @@ $(() => {
     function compare(playerTotal, dealerTotal) {
       if (playerTotal < dealerTotal) {
         console.log("Dealer Wins");
-      } else if (playerTotal === 21 && dealerTotal < 21)
-        console.log("You got Blackjack, you win");
-    }
+      } else if (playerTotal === 21 && dealerTotal < 21) {
+            console.log("You got Blackjack, you win");
+      } else if (playerTotal >= 21) {
+            console.log("BUSTED!");
+      } else if (dealerTotal >= 21) {
+            console.log("The dealer BUSTED. You win!");
+      }  else if (dealerTotal === 21 && playerTotal < 21) {
+            console.log("Dealer hit Blackjack. You lose");
+        }
+      }
+
+
   });
   
