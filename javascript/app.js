@@ -79,6 +79,8 @@ $(() => {
                 playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
                 dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
             }
+            console.log("Here's your hand: " + JSON.stringify(playerHand));
+            console.log("Dealer's total: " + JSON.stringify(dealerHand));
         }
     }
 
@@ -87,6 +89,7 @@ $(() => {
     function hit() {
         if (isRunning === true) {
             playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+            console.log("Current hand: " + JSON.stringify(playerHand))
         }
     }
 
@@ -94,40 +97,71 @@ $(() => {
         if (isRunning === true) {
             isRunning = false;
         }
-        while (dealerTotal <= 17) {
+        if (dealerTotal <= 17) {
             dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+            totalScores();
         }
     }
 
     function totalScores() {
-        playerTotal = playerHand.reduce(function (sum, apple) {
-            return sum + apple.value
-        }, 0);
-        dealerTotal = dealerHand.reduce(function (pear, orange) {
-            return pear + orange.value
-        }, 0);
+        if (isRunning === true) {
+            playerTotal = playerHand.reduce(function (sum, apple) {
+                return sum + apple.value
+            }, 0);
+            console.log("Player's Score: " + playerTotal);
+            dealerTotal = dealerHand.reduce(function (pear, orange) {
+                return pear + orange.value
+            }, 0);
+            console.log("Dealer's Score: " + dealerTotal);
+        }
     }
 
     function compare() {
-        if (playerTotal < dealerTotal) {
-            console.log("Dealer Wins");
-        } else if (playerTotal === 21 && dealerTotal < 21) {
+        if (playerTotal === 21 && dealerTotal < 21) {
             console.log("You got Blackjack, you win");
-        } else if (playerTotal >= 21) {
-            console.log("BUSTED!");
-        } else if (dealerTotal >= 21) {
-            console.log("The dealer BUSTED. You win!");
         } else if (dealerTotal === 21 && playerTotal < 21) {
             console.log("Dealer hit Blackjack. You lose");
+        } else if (playerTotal > 21) {
+            console.log("BUSTED!");
+        } else if (dealerTotal > 21) {
+            console.log("The dealer BUSTED. You win!");
+        }
+    }
+
+    function compareTwo() {
+        if (playerTotal < dealerTotal) {
+            console.log("The dealer has won");
+        } else if (playerTotal > dealerTotal) {
+            console.log("The player has won this round");
+        } else if (playerTotal === dealerTotal) {
+            console.log("DRAW GAME");
         }
     }
 
 
     function DeployGame() {
-        $('deal').on('click', function () {
+        $("#deal").on("click", function () {
+            console.log("Dealing now");
             deal();
-            console.log('Dealing cards now');
-        })
-    } 
+            totalScores();
+            compare();
+        });
+        $("#hit").on("click", function () {
+            console.log("I need a card")
+            hit();
+            totalScores();
+            compare();
+
+        });
+        $("#stand").on("click", function () {
+            console.log('End this now')
+            stand();
+            compare();
+            compareTwo();
+        });
+
+    }
+
+    DeployGame();
 
 });
