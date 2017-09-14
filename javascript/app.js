@@ -73,13 +73,13 @@ $(() => {
         return newDeck;
     }
 
-    function reset() {
-        const playerHand = [];
-        const dealerHand = [];
-        let playerTotal = 0;
-        let dealerTotal = 0;
-        let isRunning = false;
-    }
+    //function reset() {
+    //    const playerHand = [];
+    //    const dealerHand = [];
+    //    let playerTotal = 0;
+    //    let dealerTotal = 0;
+    //    let isRunning = false;
+    //}
 
     function deal() {
         if (isRunning === false) {
@@ -92,7 +92,7 @@ $(() => {
             console.log("Here's your hand: " + JSON.stringify(playerHand));
             console.log("Dealer's hand: " + JSON.stringify(dealerHand));
             $("#dealerHand").append("<img src='card/" + dealerHand[0].suit + "_" + dealerHand[0].rank + ".png'>");
-            $("#dealerHand").append('<img src="card/b2fv.png">');
+           
         }
     }
 
@@ -101,7 +101,7 @@ $(() => {
     function hit() {
         if (isRunning === true) {
             playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
-            $("#yourHand").append("<img src='card/" + playerHand[playerHand.length - 1].suit + "_" + playerHand[playerHand.length - 1].rank + ".png'>")
+            $("#yourHand").append("<img src='card/" + playerHand[playerHand.length - 1].suit + "_" + playerHand[playerHand.length - 1].rank + ".png'>");
             console.log("Current hand: " + JSON.stringify(playerHand))
         }
     }
@@ -129,6 +129,7 @@ $(() => {
     function stand() {
         if (isRunning === true) {
             dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+            $("#dealerHand").append("<img src='card/" + dealerHand[dealerHand.length - 1].suit + "_" + dealerHand[dealerHand.length - 1].rank + ".png'>")
             console.log("Dealer's hand: " + JSON.stringify(dealerHand));
             console.log("Dealer's Score: " + dealerTotal);
         }
@@ -138,30 +139,30 @@ $(() => {
 
     function compare() {
         if (playerTotal === 21 && dealerTotal < 21) {
-            console.log("You got Blackjack, you win");
-            reset();
+            alert("You got Blackjack, you win");
+
         } else if (dealerTotal === 21 && playerTotal < 21) {
-            console.log("Dealer hit Blackjack. You lose");
-            reset();
+            alert("Dealer hit Blackjack. You lose");
+            
         } else if (playerTotal > 21) {
-            console.log("BUSTED!");
-            reset();
+            alert("BUSTED!");
+            
         } else if (dealerTotal > 21) {
-            console.log("The dealer BUSTED. You win!");
-            reset();
+            alert("The dealer BUSTED. You win!");
+            
         }
     }
 
     function compareTwo() {
         if (playerTotal < dealerTotal && dealerTotal < 21) {
-            console.log("The dealer has won");
-            reset();
+            alert("The dealer has won");
+            
         } else if (playerTotal > dealerTotal) {
-            console.log("The player has won this round");
-            reset();
+            alert("The player has won this round");
+            
         } else if (playerTotal === dealerTotal) {
-            console.log("DRAW GAME");
-            reset();
+            alert("DRAW GAME");
+            
         }
     }
 
@@ -170,6 +171,7 @@ $(() => {
         $("#deal").on("click", function () {
             console.log("Dealing now");
             deal();
+            $("#dealerHand").append(`<img id="backOfCard" src="card/b2fv.png">`);
             totalPlayerScores();
             totalDealerScores();
         });
@@ -181,6 +183,7 @@ $(() => {
 
         });
         $("#stand").on("click", function () {
+            $('#backOfCard').replaceWith("<img src='card/" + dealerHand[1].suit + "_" + dealerHand[1].rank + ".png'>");
             console.log("I end my turn");
             if (isRunning === true) {
             while (playerTotal >= dealerTotal && playerTotal <= 21) {
