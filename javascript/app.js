@@ -20,7 +20,7 @@ $(() => {
     function deck() {
         let newDeck = [];
         const ranks = [
-            "Ace",
+            "ace",
             "2",
             "3",
             "4",
@@ -30,11 +30,11 @@ $(() => {
             "8",
             "9",
             "10",
-            "Jack",
-            "Queen",
-            "King"
+            "jack",
+            "queen",
+            "king"
         ];
-        const suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
+        const suits = ["club", "diamond", "heart", "spade"];
 
         for (let i = 0; i < suits.length; i++) {
             for (let j = 0; j < ranks.length; j++) {
@@ -42,7 +42,7 @@ $(() => {
             }
         }
         for (let k = 0; k < newDeck.length; k++) {
-            if (newDeck[k].rank === "Ace") {
+            if (newDeck[k].rank === "ace") {
                 newDeck[k].value = 1;
             } else if (newDeck[k].rank === "2") {
                 newDeck[k].value = 2;
@@ -62,15 +62,23 @@ $(() => {
                 newDeck[k].value = 9;
             } else if (newDeck[k].rank === "10") {
                 newDeck[k].value = 10;
-            } else if (newDeck[k].rank === "Jack") {
+            } else if (newDeck[k].rank === "jack") {
                 newDeck[k].value = 10;
-            } else if (newDeck[k].rank === "Queen") {
+            } else if (newDeck[k].rank === "queen") {
                 newDeck[k].value = 10;
-            } else if (newDeck[k].rank === "King") {
+            } else if (newDeck[k].rank === "king") {
                 newDeck[k].value = 10;
             }
         }
         return newDeck;
+    }
+
+    function reset() {
+        const playerHand = [];
+        const dealerHand = [];
+        let playerTotal = 0;
+        let dealerTotal = 0;
+        let isRunning = false;
     }
 
     function deal() {
@@ -125,22 +133,29 @@ $(() => {
     function compare() {
         if (playerTotal === 21 && dealerTotal < 21) {
             console.log("You got Blackjack, you win");
+            reset();
         } else if (dealerTotal === 21 && playerTotal < 21) {
             console.log("Dealer hit Blackjack. You lose");
+            reset();
         } else if (playerTotal > 21) {
             console.log("BUSTED!");
+            reset();
         } else if (dealerTotal > 21) {
             console.log("The dealer BUSTED. You win!");
+            reset();
         }
     }
 
     function compareTwo() {
         if (playerTotal < dealerTotal && dealerTotal < 21) {
             console.log("The dealer has won");
+            reset();
         } else if (playerTotal > dealerTotal) {
             console.log("The player has won this round");
+            reset();
         } else if (playerTotal === dealerTotal) {
             console.log("DRAW GAME");
+            reset();
         }
     }
 
@@ -151,17 +166,16 @@ $(() => {
             deal();
             totalPlayerScores();
             totalDealerScores();
-            compare();
         });
         $("#hit").on("click", function () {
-            console.log("I need a card")
+            console.log("I draw")
             hit();
             totalPlayerScores();
             compare();
 
         });
         $("#stand").on("click", function () {
-            console.log('End this now')
+            console.log('I end my turn')
             while (playerTotal >= dealerTotal && playerTotal <= 21) {
             stand();
             totalDealerScores();
