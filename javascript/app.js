@@ -86,10 +86,13 @@ $(() => {
             isRunning = true;
             for (let i = 0; i < 2; i++) {
                 playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+                $("#yourHand").append("<img src='card/" + playerHand[i].suit + "_" + playerHand[i].rank + ".png'>");
                 dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
             }
             console.log("Here's your hand: " + JSON.stringify(playerHand));
             console.log("Dealer's hand: " + JSON.stringify(dealerHand));
+            $("#dealerHand").append("<img src='card/" + dealerHand[0].suit + "_" + dealerHand[0].rank + ".png'>");
+            $("#dealerHand").append('<img src="card/b2fv.png">');
         }
     }
 
@@ -98,6 +101,7 @@ $(() => {
     function hit() {
         if (isRunning === true) {
             playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+            $("#yourHand").append("<img src='card/" + playerHand[playerHand.length - 1].suit + "_" + playerHand[playerHand.length - 1].rank + ".png'>")
             console.log("Current hand: " + JSON.stringify(playerHand))
         }
     }
@@ -123,9 +127,11 @@ $(() => {
     }
 
     function stand() {
-        dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
-        console.log("Dealer's hand: " + JSON.stringify(dealerHand));
-        console.log("Dealer's Score: " + dealerTotal);
+        if (isRunning === true) {
+            dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+            console.log("Dealer's hand: " + JSON.stringify(dealerHand));
+            console.log("Dealer's Score: " + dealerTotal);
+        }
     }
 
 
@@ -175,11 +181,12 @@ $(() => {
 
         });
         $("#stand").on("click", function () {
-            console.log('I end my turn')
+            console.log("I end my turn");
+            if (isRunning === true) {
             while (playerTotal >= dealerTotal && playerTotal <= 21) {
-            stand();
-            totalDealerScores();
-                if (dealerTotal >= 20) {
+                stand();
+                totalDealerScores();
+                if (dealerTotal > playerTotal) {
                     break;
                 }
             }
@@ -187,6 +194,7 @@ $(() => {
             totalPlayerScores();
             compare();
             compareTwo();
+        } 
         });
     }
 
