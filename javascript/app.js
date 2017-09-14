@@ -72,6 +72,7 @@ $(() => {
         }
         return newDeck;
     }
+
     function deal() {
         if (isRunning === false) {
             isRunning = true;
@@ -80,7 +81,7 @@ $(() => {
                 dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
             }
             console.log("Here's your hand: " + JSON.stringify(playerHand));
-            console.log("Dealer's total: " + JSON.stringify(dealerHand));
+            console.log("Dealer's hand: " + JSON.stringify(dealerHand));
         }
     }
 
@@ -93,28 +94,33 @@ $(() => {
         }
     }
 
-    function stand() {
-        if (isRunning === true) {
-            isRunning = false;
-        }
-        if (dealerTotal <= 17) {
-            dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
-            totalScores();
-        }
-    }
 
-    function totalScores() {
+    function totalPlayerScores() {
         if (isRunning === true) {
             playerTotal = playerHand.reduce(function (sum, apple) {
                 return sum + apple.value
             }, 0);
             console.log("Player's Score: " + playerTotal);
+        }
+    }
+
+    function totalDealerScores() {
+        if (isRunning === true) {
             dealerTotal = dealerHand.reduce(function (pear, orange) {
                 return pear + orange.value
             }, 0);
             console.log("Dealer's Score: " + dealerTotal);
         }
+        return dealerTotal;
     }
+
+    function stand() {
+        dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
+        console.log("Dealer's hand: " + JSON.stringify(dealerHand));
+        console.log("Dealer's Score: " + dealerTotal);
+    }
+
+
 
     function compare() {
         if (playerTotal === 21 && dealerTotal < 21) {
@@ -129,7 +135,7 @@ $(() => {
     }
 
     function compareTwo() {
-        if (playerTotal < dealerTotal) {
+        if (playerTotal < dealerTotal && dealerTotal < 21) {
             console.log("The dealer has won");
         } else if (playerTotal > dealerTotal) {
             console.log("The player has won this round");
@@ -143,25 +149,32 @@ $(() => {
         $("#deal").on("click", function () {
             console.log("Dealing now");
             deal();
-            totalScores();
+            totalPlayerScores();
+            totalDealerScores();
             compare();
         });
         $("#hit").on("click", function () {
             console.log("I need a card")
             hit();
-            totalScores();
+            totalPlayerScores();
             compare();
 
         });
         $("#stand").on("click", function () {
             console.log('End this now')
+            while (playerTotal >= dealerTotal && playerTotal <= 21) {
             stand();
+            totalDealerScores();
+                if (dealerTotal >= 20) {
+                    break;
+                }
+            }
+            totalDealerScores();
+            totalPlayerScores();
             compare();
             compareTwo();
         });
-
     }
 
     DeployGame();
-
 });
