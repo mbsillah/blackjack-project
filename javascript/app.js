@@ -139,29 +139,36 @@ $(() => {
 
     function compare() {
         if (playerTotal === 21 && dealerTotal < 21) {
-            alert("You got Blackjack, you win");
+            setTimeout(() => { 
+                alert("You got Blackjack, you win")}, 700);
 
         } else if (dealerTotal === 21 && playerTotal < 21) {
-            alert("Dealer hit Blackjack. You lose");
+            setTimeout(() => {
+                alert("Dealer hit Blackjack. You lose")}, 700);
             
         } else if (playerTotal > 21) {
-            alert("BUSTED!");
+            setTimeout(() => {
+                alert("You BUSTED!")}, 700);
             
         } else if (dealerTotal > 21) {
-            alert("The dealer BUSTED. You win!");
+            setTimeout(() => {  
+               alert("The dealer BUSTED. You win!")}, 700);
             
         }
     }
 
     function compareTwo() {
         if (playerTotal < dealerTotal && dealerTotal < 21) {
-            alert("The dealer has won");
+            setTimeout(() => {
+                alert("The dealer has won")}, 700);
             
-        } else if (playerTotal > dealerTotal) {
-            alert("The player has won this round");
+        } else if (playerTotal > dealerTotal && playerTotal < 21) {
+            setTimeout(() => {
+                alert("The player has won this round")}, 700);
             
         } else if (playerTotal === dealerTotal) {
-            alert("DRAW GAME");
+            setTimeout(() => {
+                alert("DRAW GAME")}, 700);;
             
         }
     }
