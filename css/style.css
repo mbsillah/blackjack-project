@@ -42,3 +42,23 @@ h3 {
 .playerCard {
     margin: 5px
 }
+
+#deal {
+    margin: 10px;
+}
+
+#hit {
+    margin: 10px;
+}
+
+#stand {
+    margin: 10px;
+}
+
+#reset {
+    margin: 10px;
+}
+
+p {
+    font-size: 19px;
+}

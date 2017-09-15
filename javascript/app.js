@@ -1,7 +1,7 @@
 $(() => {
     const mainDeck = deck();
-    const playerHand = [];
-    const dealerHand = [];
+    let playerHand = [];
+    let dealerHand = [];
     let playerTotal = 0;
     let dealerTotal = 0;
     let isRunning = false;
@@ -74,12 +74,11 @@ $(() => {
     }
 
     function resetGame() {
-        this.mainDeck = deck();
-        this.playerHand = [];
-        this.dealerHand = [];
-        this.playerTotal = 0;
-        this.dealerTotal = 0;
-        this.isRunning = false;
+        playerHand = [];
+        dealerHand = [];
+        playerTotal = 0;
+        dealerTotal = 0;
+        isRunning = false;
     }
 
     function deal() {
@@ -91,7 +90,6 @@ $(() => {
                 dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
             }
             console.log("Here's your hand: " + JSON.stringify(playerHand));
-            console.log("Dealer's hand: " + JSON.stringify(dealerHand));
             $("#dealerHand").append(`<img class="dealerCard" src='card/` + dealerHand[0].suit + `_` + dealerHand[0].rank + `.png'>`);
 
         }
@@ -180,10 +178,9 @@ $(() => {
             deal();
             $("#dealerHand").append(`<img class="dealerCard" id="backOfCard" src="card/b2fv.png">`);
             totalPlayerScores();
-            totalDealerScores();
+           
         });
         $("#hit").on("click", function () {
-            console.log("I draw")
             hit();
             totalPlayerScores();
             compare();
@@ -203,9 +200,14 @@ $(() => {
                 totalPlayerScores();
                 compare();
                 compareTwo();
-            }
+           }
         });
-    }
+        $("#reset").on("click", function () {
+            resetGame();
+            $(".dealerCard").remove();
+            $(".playerCard").remove();
+        })
+    }   
 
     DeployGame();
 });
