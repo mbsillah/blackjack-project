@@ -1,8 +1,12 @@
-# blackjack-project
-General Assembly Project 1
+#General Assembly Project 1: Blackjack
 
 
->link: http://programmer-berries-57680.bitballoon.com
->Trello: https://trello.com/b/qRQrcKqi/wdi-project-1
+**Live Site:** <http://programmer-berries-57680.bitballoon.com>
+**Trello:** <https://trello.com/b/qRQrcKqi/wdi-project-1>
+**Wireframe:**<https://github.com/sillah2010/blackjack-project/blob/master/Screen%20Shot%202017-09-12%20at%2012.45.32%20AM.png>
 
-![Screenshot](blackjack-project/Screen Shot 2017-09-12 at 12.45.32 AM.png)
+
+##Technologies Used
+ * HTML5, CSS3, Javascript, jQuery, Bootstrap
+ *
+ *
