@@ -10,6 +10,7 @@ body{
 h1 {
     display: flex;
     justify-content: center;
+    color: rgb(21, 19, 19)
 }
 
 .btn-group {
@@ -33,6 +34,7 @@ footer {
 
 h3 {
     margin: 60px;
+    color:rgb(21, 19, 19)
 }
 
 .dealerCard {
@@ -61,4 +63,10 @@ h3 {
 
 p {
     font-size: 19px;
+    color:rgb(21, 19, 19)
+}
+
+.playerScore {
+    display: flex;
+    justify-content: center; 
 }
