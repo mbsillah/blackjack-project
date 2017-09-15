@@ -68,5 +68,6 @@ p {
 
 .playerScore {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
+    margin: 20px;
 }
