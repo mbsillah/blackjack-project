@@ -178,11 +178,13 @@ $(() => {
             deal();
             $("#dealerHand").append(`<img class="dealerCard" id="backOfCard" src="card/b2fv.png">`);
             totalPlayerScores();
+            $(".playerScore").text(`Player Score: ` + playerTotal);
            
         });
         $("#hit").on("click", function () {
             hit();
             totalPlayerScores();
+            $(".playerScore").text(`Player Score: ` + playerTotal);
             compare();
 
         });
@@ -198,6 +200,7 @@ $(() => {
                 }
                 totalDealerScores();
                 totalPlayerScores();
+
                 compare();
                 compareTwo();
            }
@@ -206,6 +209,7 @@ $(() => {
             resetGame();
             $(".dealerCard").remove();
             $(".playerCard").remove();
+            $(".playerScore").text(`Player Score: ` + playerTotal);
         })
     }   
 
