@@ -9,7 +9,7 @@
 **Wireframe:** <https://github.com/sillah2010/blackjack-project/blob/master/Screen%20Shot%202017-09-12%20at%2012.45.32%20AM.png>
 
 
-##Technologies Used
+## Technologies Used
  * HTML5, CSS3, Javascript, jQuery, Bootstrap
  *
  *
