@@ -179,7 +179,7 @@ $(() => {
             $("#dealerHand").append(`<img class="dealerCard" id="backOfCard" src="card/b2fv.png">`);
             totalPlayerScores();
             $(".playerScore").text(`Player Score: ` + playerTotal);
-           
+
         });
         $("#hit").on("click", function () {
             hit();
@@ -203,7 +203,7 @@ $(() => {
 
                 compare();
                 compareTwo();
-           }
+            }
         });
         $("#reset").on("click", function () {
             resetGame();
@@ -211,7 +211,7 @@ $(() => {
             $(".playerCard").remove();
             $(".playerScore").text(`Player Score: ` + playerTotal);
         })
-    }   
+    }
 
     DeployGame();
 });
