@@ -1,7 +1,7 @@
 # General Assembly Project 1: Blackjack
 ## Overview
 
-**Live Site:** <http://principal-amselm-80544.bitballoon.com>
+**Live Site:** <http://musa-blackjack.bitballoon.com>
 
 **Trello:** <https://trello.com/b/qRQrcKqi/wdi-project-1>
 
@@ -11,5 +11,7 @@
 
 ## Technologies Used
  * HTML5, CSS3, Javascript, jQuery, Bootstrap
- *
- *
+ * Visual Studio Code
+ * Project Planning - [Trello](musa-blackjack.bitballoon.com)
+
+** Up   
