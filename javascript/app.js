@@ -73,25 +73,26 @@ $(() => {
         return newDeck;
     }
 
-    //function reset() {
-    //    this.playerHand = [];
-    //    this.dealerHand = [];
-    //    this.playerTotal = 0;
-    //    this.dealerTotal = 0;
-    //    this.isRunning = false;
-    //}
+    function resetGame() {
+        this.mainDeck = deck();
+        this.playerHand = [];
+        this.dealerHand = [];
+        this.playerTotal = 0;
+        this.dealerTotal = 0;
+        this.isRunning = false;
+    }
 
     function deal() {
         if (isRunning === false) {
             isRunning = true;
             for (let i = 0; i < 2; i++) {
                 playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
-                $("#yourHand").append(`<img class="playerHand" src="card/` + playerHand[i].suit + `_` + playerHand[i].rank + `.png">`);
+                $("#yourHand").append(`<img class="playerCard" src="card/` + playerHand[i].suit + `_` + playerHand[i].rank + `.png">`);
                 dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
             }
             console.log("Here's your hand: " + JSON.stringify(playerHand));
             console.log("Dealer's hand: " + JSON.stringify(dealerHand));
-            $("#dealerHand").append(`<img class="dealerHand" src='card/` + dealerHand[0].suit + `_` + dealerHand[0].rank + `.png'>`);
+            $("#dealerHand").append(`<img class="dealerCard" src='card/` + dealerHand[0].suit + `_` + dealerHand[0].rank + `.png'>`);
 
         }
     }
@@ -101,7 +102,7 @@ $(() => {
     function hit() {
         if (isRunning === true) {
             playerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
-            $("#yourHand").append(`<img class="playerHand" src='card/` + playerHand[playerHand.length - 1].suit + `_` + playerHand[playerHand.length - 1].rank + `.png'>`);
+            $("#yourHand").append(`<img class="playerCard" src='card/` + playerHand[playerHand.length - 1].suit + `_` + playerHand[playerHand.length - 1].rank + `.png'>`);
             console.log("Current hand: " + JSON.stringify(playerHand))
         }
     }
@@ -129,7 +130,7 @@ $(() => {
     function stand() {
         if (isRunning === true) {
             dealerHand.push(mainDeck[Math.floor(Math.random() * (mainDeck.length - 0)) + 0]);
-            $("#dealerHand").append(`<img class="dealerHand" src="card/` + dealerHand[dealerHand.length - 1].suit + `_` + dealerHand[dealerHand.length - 1].rank + `.png">`)
+            $("#dealerHand").append(`<img class="dealerCard" src="card/` + dealerHand[dealerHand.length - 1].suit + `_` + dealerHand[dealerHand.length - 1].rank + `.png">`)
             console.log("Dealer's hand: " + JSON.stringify(dealerHand));
             console.log("Dealer's Score: " + dealerTotal);
         }
@@ -142,22 +143,18 @@ $(() => {
             setTimeout(() => {
                 alert("You got Blackjack, you win")
             }, 700);
-
         } else if (dealerTotal === 21 && playerTotal < 21) {
             setTimeout(() => {
                 alert("Dealer hit Blackjack. You lose")
             }, 700);
-
         } else if (playerTotal > 21) {
             setTimeout(() => {
                 alert("You BUSTED!")
             }, 700);
-
         } else if (dealerTotal > 21) {
             setTimeout(() => {
                 alert("The dealer BUSTED. You win!")
             }, 700);
-
         }
     }
 
@@ -166,26 +163,22 @@ $(() => {
             setTimeout(() => {
                 alert("The dealer has won")
             }, 700);
-
         } else if (playerTotal > dealerTotal && playerTotal < 21) {
             setTimeout(() => {
                 alert("The player has won this round")
             }, 700);
-
         } else if (playerTotal === dealerTotal) {
             setTimeout(() => {
                 alert("DRAW GAME")
             }, 700);;
-
         }
     }
 
 
     function DeployGame() {
         $("#deal").on("click", function () {
-            console.log("Dealing now");
             deal();
-            $("#dealerHand").append(`<img class="dealerHand" id="backOfCard" src="card/b2fv.png">`);
+            $("#dealerHand").append(`<img class="dealerCard" id="backOfCard" src="card/b2fv.png">`);
             totalPlayerScores();
             totalDealerScores();
         });
@@ -197,8 +190,7 @@ $(() => {
 
         });
         $("#stand").on("click", function () {
-            $('#backOfCard').replaceWith(`<img class="dealerHand" src="card/` + dealerHand[1].suit + `_` + dealerHand[1].rank + `.png">`);
-            console.log("I end my turn");
+            $('#backOfCard').replaceWith(`<img class="dealerCard" src="card/` + dealerHand[1].suit + `_` + dealerHand[1].rank + `.png">`);
             if (isRunning === true) {
                 while (playerTotal >= dealerTotal && playerTotal <= 21) {
                     stand();
@@ -217,3 +209,5 @@ $(() => {
 
     DeployGame();
 });
+
+

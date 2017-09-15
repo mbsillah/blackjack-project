@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>BlackJack</title>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
@@ -13,23 +13,24 @@
 </head>
 
 <body>
-  <h1>My Blackjack Game</h1>
-  <hr>
-  <h3>Dealer Hand</h3>
-  <div id="dealerHand">
-  </div>
-  <h3>Your Hand</h3>
-  <div id="yourHand">
-    
-  </div>
-  <div class="btn-group">
-      <button  id="deal">Deal</button>
-      <button  id="hit">Hit</button>
+  <div>
+    <header>
+      <h1>Musa's Blackjack</h1>
+    </header>
+    <hr>
+    <h3 class="handTitles">Dealer's Cards:</h3>
+    <div id="dealerHand"></div>
+    <h3 class="handTitles">Your Hand:</h3>
+    <div id="yourHand"></div>
+    <div class="btn-group">
+      <button id="deal">Deal</button>
+      <button id="hit">Hit</button>
       <button class="btn-warning" id="stand">Stand</button>
+    </div>
+    <footer class="footer">
+      <p>Follow me on <a class="twitter" href="http://twitter.com/MusaFGC">Twitter</a>.</p>
+    </footer>
   </div>
-  <footer>
-    <p>Follow me on <a class="twitter" href="http://twitter.com/MusaFGC">Twitter</a>.</p>
-  </footer>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="javascript/app.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

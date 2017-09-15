@@ -1,22 +1,44 @@
-body {
+body{
+    background-color: green
+}
+
+.handTitles {
     display: flex;
-    background-color: green;
-    flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
 }
 
 h1 {
-    margin: 20px
+    display: flex;
+    justify-content: center;
 }
 
-h3 {
+.btn-group {
+    display: flex;
+    justify-content: center;
     margin: 20px;
 }
 
-.dealerHand {
-   
+footer {
+    display: flex;
+    justify-content: center;
 }
 
-.playerHand {
-    
+#dealerHand {
+    margin-left: 80px;
+}
+
+#yourHand {
+    margin-left: 80px;
+}
+
+h3 {
+    margin: 60px;
+}
+
+.dealerCard {
+    margin: 5px
+}
+
+.playerCard {
+    margin: 5px
 }
