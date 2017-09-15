@@ -172,48 +172,56 @@ $(() => {
         }
     }
 
+//     function aceValue() {
+//         for (let i = 0; i < playerHand.length; i++) {
+//             if (playerTotal < 11 && playerHand[i].rank = "ace") {
+//                 playerHand[i].value = 11;
+//                 playerTotal =- 1; 
+//     }            
+//     }
+// }
 
-    function DeployGame() {
-        $("#deal").on("click", function () {
-            deal();
-            $("#dealerHand").append(`<img class="dealerCard" id="backOfCard" src="card/b2fv.png">`);
-            totalPlayerScores();
-            $(".playerScore").text(`Player Score: ` + playerTotal);
+function DeployGame() {
+    $("#deal").on("click", function () {
+        deal();
+        $("#dealerHand").append(`<img class="dealerCard" id="backOfCard" src="card/b2fv.png">`);
+        totalPlayerScores();
+        $(".playerScore").text(`Player Score: ` + playerTotal);
 
-        });
-        $("#hit").on("click", function () {
-            hit();
-            totalPlayerScores();
-            $(".playerScore").text(`Player Score: ` + playerTotal);
-            compare();
+    });
+    $("#hit").on("click", function () {
+        hit();
+        totalPlayerScores();
+        $(".playerScore").text(`Player Score: ` + playerTotal);
+        compare();
 
-        });
-        $("#stand").on("click", function () {
-            $('#backOfCard').replaceWith(`<img class="dealerCard" src="card/` + dealerHand[1].suit + `_` + dealerHand[1].rank + `.png">`);
-            if (isRunning === true) {
-                while (playerTotal >= dealerTotal && playerTotal <= 21) {
-                    stand();
-                    totalDealerScores();
-                    if (dealerTotal > playerTotal) {
-                        break;
-                    }
-                }
+    });
+    $("#stand").on("click", function () {
+        $('#backOfCard').replaceWith(`<img class="dealerCard" src="card/` + dealerHand[1].suit + `_` + dealerHand[1].rank + `.png">`);
+        if (isRunning === true) {
+            while (playerTotal >= dealerTotal && playerTotal <= 21) {
+                stand();
                 totalDealerScores();
-                totalPlayerScores();
-
-                compare();
-                compareTwo();
+                if (dealerTotal > playerTotal) {
+                    break;
+                }
             }
-        });
-        $("#reset").on("click", function () {
-            resetGame();
-            $(".dealerCard").remove();
-            $(".playerCard").remove();
-            $(".playerScore").text(`Player Score: ` + playerTotal);
-        })
-    }
+            totalDealerScores();
+            totalPlayerScores();
 
-    DeployGame();
+            compare();
+            compareTwo();
+        }
+    });
+    $("#reset").on("click", function () {
+        resetGame();
+        $(".dealerCard").remove();
+        $(".playerCard").remove();
+        $(".playerScore").text(`Player Score: ` + playerTotal);
+    })
+}
+
+DeployGame();
 });
 
 
