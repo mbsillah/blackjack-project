@@ -1,7 +1,7 @@
 # General Assembly Project 1: Blackjack
 ## Overview
 
-**Live Site:** <http://programmer-berries-57680.bitballoon.com>
+**Live Site:** <http://principal-amselm-80544.bitballoon.com>
 
 **Trello:** <https://trello.com/b/qRQrcKqi/wdi-project-1>
 
