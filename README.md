@@ -1,6 +1,8 @@
 # General Assembly Project 1: Blackjack
 ## Overview
 
+I have created a simple game of blackjack. It uses many functions to handle the core game mechanics. The event handlers (buttons) call the approriate functions for each phase of the game.
+
 **Live Site:** <http://musa-blackjack.bitballoon.com>
 
 
@@ -15,3 +17,4 @@
 * Wins, Losses, Draw Score Keeper.
 * Allows the user to bet in-game-currency on each turn.
 * Adding a notification of win or losses via DOM Manipulation and not relying on alerts. 
+* Adding a function that changes the value of any ace card from 1 or 11 depending on the current hand value
