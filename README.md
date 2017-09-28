@@ -9,7 +9,7 @@ I have created a simple game of blackjack. It uses many functions to handle the 
 ## Technologies Used
  * HTML5, CSS3, Javascript, jQuery, Bootstrap
  * Visual Studio Code
- * Project Planning - [Trello](musa-blackjack.bitballoon.com)
+ * Project Planning - [Trello](https://trello.com/b/qRQrcKqi/wdi-project-1)
  * [Wireframe](<https://github.com/sillah2010/blackjack-project/blob/master/Screen%20Shot%202017-09-12%20at%2012.45.32%20AM.png>)
 
 
